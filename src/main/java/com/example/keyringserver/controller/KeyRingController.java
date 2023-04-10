@@ -27,7 +27,7 @@ public class KeyRingController {
             // dto로 entity 생성
             KeyRingEntity entity = KeyRingDTO.toEntity(dto);
 
-            // entity 저장 후 userid가 생성한 KeyRing entity 목록 받아옴
+            // entity 저장 후 모든 KeyRing entity 목록 받아옴
             List<KeyRingEntity> entities = service.create(entity);
             // KeyRing entity 목록을 KeyRing dto 목록으로 변경
             List<KeyRingDTO> dtos = entities.stream().map(KeyRingDTO::new).collect(Collectors.toList());
@@ -63,8 +63,7 @@ public class KeyRingController {
         try {
             // dto를 entity로 변경
             KeyRingEntity entity = KeyRingDTO.toEntity(dto);
-            log.error("mmm controller delete dto:" + entity.toString());
-            // entity 삭제 후 userid가 생성한 KeyRing entity 목록 받아옴
+            // entity 삭제 후 모든 KeyRing entity 목록 받아옴
             List<KeyRingEntity> entities = service.delete(entity);
             // KeyRing entity 목록을 KeyRing dto 목록으로 변경
             List<KeyRingDTO> dtos = entities.stream().map(KeyRingDTO::new).collect(Collectors.toList());

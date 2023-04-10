@@ -21,7 +21,6 @@ public class KeyRingService {
         validate(entity);
 
         repository.save(entity);
-        log.info("mmm Entity id: {} is saved", entity.getUserId());
 
         return repository.findAll();
     }
@@ -43,14 +42,12 @@ public class KeyRingService {
             repository.save(keyRing);
         });
 
-        return retrieve(entity.getUserId());
+        return repository.findByUserId(entity.getUserId());
     }
 
     // 삭제 후 모든 TodoE List 반환
     public List<KeyRingEntity> delete(final KeyRingEntity entity) {
         validate(entity);
-
-        log.error("mmm:" + entity.toString());
 
         try {
             repository.delete(entity);
@@ -59,7 +56,7 @@ public class KeyRingService {
 
             throw new RuntimeException("error deleting entity: " + entity.getUserId());
         }
-        return retrieve(entity.getUserId());
+        return repository.findAll();
     }
 
     // userId가 생성한 모든 KeyRing List 리턴
