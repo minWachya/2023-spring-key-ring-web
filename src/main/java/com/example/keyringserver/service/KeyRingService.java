@@ -21,7 +21,7 @@ public class KeyRingService {
         validate(entity);
 
         repository.save(entity);
-        log.info("Entity id: {} is saved", entity.getUserId());
+        log.info("mmm Entity id: {} is saved", entity.getUserId());
 
         return repository.findByUserId(entity.getUserId());
     }
@@ -32,7 +32,7 @@ public class KeyRingService {
 
         // entity가 Null이 아닌 경우 실행
         // put 요청한 KeyRing id와 같은 KeyRing 찾기
-        final Optional<KeyRingEntity> optional = repository.findById(entity.getUserId());
+        final Optional<KeyRingEntity> optional = repository.findById(entity.getId());
         optional.ifPresent(keyRing -> {
             // title, detail, imgUrl 수정 후 저장
             keyRing.setTitle(entity.getTitle());

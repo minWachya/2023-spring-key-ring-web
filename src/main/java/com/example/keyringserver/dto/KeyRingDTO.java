@@ -11,12 +11,14 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Data
 public class KeyRingDTO {
+    private String id;
     private String userId;
     private String title;
     private String detail;
     private String imgUrl;
 
     public KeyRingDTO(final KeyRingEntity entity) {
+        this.id = entity.getId();
         this.userId = entity.getUserId();
         this.title = entity.getTitle();
         this.detail = entity.getDetail();

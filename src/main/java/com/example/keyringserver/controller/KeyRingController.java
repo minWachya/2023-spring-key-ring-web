@@ -13,7 +13,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @RestController
-@RequestMapping("KeyRing")
+@RequestMapping("keyring")
 public class KeyRingController {
     // 자동 주입
     @Autowired
@@ -24,6 +24,7 @@ public class KeyRingController {
         try {
             // dto로 entity 생성
             KeyRingEntity entity = KeyRingDTO.toEntity(dto);
+
             // entity 저장 후 userid가 생성한 KeyRing entity 목록 받아옴
             List<KeyRingEntity> entities = service.create(entity);
             // KeyRing entity 목록을 KeyRing dto 목록으로 변경
