@@ -20,7 +20,7 @@ public class KeyRingEntity {
     @Id            // 기본 키 지정
     @GeneratedValue(generator = "system-uuid")   // system-uuid라는 이름의 generator 이용하여 uuid 자동 생성
     @GenericGenerator(name="system-uuid", strategy = "uuid")    // system-uuid라는 이름의 generator를 생성함. 얘는 uuid라는 문자열 이용해 id 생성함.
-    private String id;
+    private String userId;
     private String title;
     private String detail;
     private String imgUrl;

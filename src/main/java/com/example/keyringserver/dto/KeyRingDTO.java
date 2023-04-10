@@ -11,13 +11,13 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Data
 public class KeyRingDTO {
-    private String id;
+    private String userId;
     private String title;
     private String detail;
     private String imgUrl;
 
     public KeyRingDTO(final KeyRingEntity entity) {
-        this.id = entity.getId();
+        this.userId = entity.getUserId();
         this.title = entity.getTitle();
         this.detail = entity.getDetail();
         this.imgUrl = entity.getImgUrl();
@@ -26,7 +26,7 @@ public class KeyRingDTO {
     // Controller가 받은 KeyRingDTO KeyRingEntity 변환 필요
     public static KeyRingEntity toEntity(final KeyRingDTO dto) {
         return KeyRingEntity.builder()
-                .id(dto.getId())
+                .userId(dto.getUserId())
                 .title(dto.getTitle())
                 .detail(dto.getDetail())
                 .imgUrl(dto.getImgUrl())
