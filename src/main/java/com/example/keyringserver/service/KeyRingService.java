@@ -23,7 +23,7 @@ public class KeyRingService {
         repository.save(entity);
         log.info("mmm Entity id: {} is saved", entity.getUserId());
 
-        return repository.findByUserId(entity.getUserId());
+        return repository.findAll();
     }
 
     // 수정 후 모든 KeyRing List 반환
