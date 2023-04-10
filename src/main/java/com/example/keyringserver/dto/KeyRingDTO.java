@@ -28,6 +28,7 @@ public class KeyRingDTO {
     // Controller가 받은 KeyRingDTO KeyRingEntity 변환 필요
     public static KeyRingEntity toEntity(final KeyRingDTO dto) {
         return KeyRingEntity.builder()
+                .id(dto.getId())
                 .userId(dto.getUserId())
                 .title(dto.getTitle())
                 .detail(dto.getDetail())

@@ -34,7 +34,8 @@ public class KeyRingService {
         // put 요청한 KeyRing id와 같은 KeyRing 찾기
         final Optional<KeyRingEntity> optional = repository.findById(entity.getId());
         optional.ifPresent(keyRing -> {
-            // title, detail, imgUrl 수정 후 저장
+            // userId, title, detail, imgUrl 수정 후 저장
+            keyRing.setUserId(entity.getUserId());
             keyRing.setTitle(entity.getTitle());
             keyRing.setDetail(entity.getDetail());
             keyRing.setImgUrl(entity.getImgUrl());
@@ -48,6 +49,8 @@ public class KeyRingService {
     // 삭제 후 모든 TodoE List 반환
     public List<KeyRingEntity> delete(final KeyRingEntity entity) {
         validate(entity);
+
+        log.error("mmm:" + entity.toString());
 
         try {
             repository.delete(entity);

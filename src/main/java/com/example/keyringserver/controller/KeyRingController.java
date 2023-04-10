@@ -5,6 +5,7 @@ import com.example.keyringserver.dto.KeyRingDTO;
 import com.example.keyringserver.dto.ResponseDTO;
 import com.example.keyringserver.model.KeyRingEntity;
 import com.example.keyringserver.service.KeyRingService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.stream.Collectors;
 
+@Slf4j
 @RestController
 @RequestMapping("keyring")
 public class KeyRingController {
@@ -61,6 +63,7 @@ public class KeyRingController {
         try {
             // dto를 entity로 변경
             KeyRingEntity entity = KeyRingDTO.toEntity(dto);
+            log.error("mmm controller delete dto:" + entity.toString());
             // entity 삭제 후 userid가 생성한 KeyRing entity 목록 받아옴
             List<KeyRingEntity> entities = service.delete(entity);
             // KeyRing entity 목록을 KeyRing dto 목록으로 변경
