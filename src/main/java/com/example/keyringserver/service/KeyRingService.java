@@ -22,7 +22,7 @@ public class KeyRingService {
 
         repository.save(entity);
 
-        return repository.findAll();
+        return repository.findByUserId(entity.getUserId()); // userId가 생성한 거 말고 전체 데이터 리턴은 findAll()
     }
 
     // 수정 후 모든 KeyRing List 반환
@@ -45,6 +45,10 @@ public class KeyRingService {
         return repository.findByUserId(entity.getUserId());
     }
 
+    public List<KeyRingEntity> search(final String title) {
+        return repository.findByTitle(title);
+    }
+
     // 삭제 후 모든 TodoE List 반환
     public List<KeyRingEntity> delete(final KeyRingEntity entity) {
         validate(entity);
@@ -56,7 +60,7 @@ public class KeyRingService {
 
             throw new RuntimeException("error deleting entity: " + entity.getUserId());
         }
-        return repository.findAll();
+        return repository.findByUserId(entity.getUserId());
     }
 
     // userId가 생성한 모든 KeyRing List 리턴

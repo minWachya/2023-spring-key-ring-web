@@ -2,6 +2,7 @@ package com.example.keyringserver.controller;
 
 
 import com.example.keyringserver.dto.KeyRingDTO;
+import com.example.keyringserver.dto.KeyRingSearchRequestBodyDTO;
 import com.example.keyringserver.dto.ResponseDTO;
 import com.example.keyringserver.model.KeyRingEntity;
 import com.example.keyringserver.service.KeyRingService;
@@ -58,12 +59,25 @@ public class KeyRingController {
         return ResponseEntity.ok().body(response);
     }
 
+    @GetMapping("/search")
+    public ResponseEntity<?> searchKeyRing(@RequestBody(required = false) KeyRingSearchRequestBodyDTO request) {
+        // title이 같은 KeyRing entity 목록 받아옴
+        List<KeyRingEntity> entities = service.search(request.getTitle());
+        // KeyRing entity 목록을 KeyRing dto 목록으로 변경
+        List<KeyRingDTO> dtos = entities.stream().map(KeyRingDTO::new).collect(Collectors.toList());
+        // response 만들어서 출력
+        ResponseDTO<KeyRingDTO> response = ResponseDTO.<KeyRingDTO>builder()
+                .data(dtos).build();
+
+        return ResponseEntity.ok().body(response);
+    }
+
     @DeleteMapping
     public ResponseEntity<?> deleteKeyRing(@RequestBody KeyRingDTO dto) {
         try {
             // dto를 entity로 변경
             KeyRingEntity entity = KeyRingDTO.toEntity(dto);
-            // entity 삭제 후 모든 KeyRing entity 목록 받아옴
+            // entity 삭제 후 userId가 생성한 KeyRing entity 목록 받아옴
             List<KeyRingEntity> entities = service.delete(entity);
             // KeyRing entity 목록을 KeyRing dto 목록으로 변경
             List<KeyRingDTO> dtos = entities.stream().map(KeyRingDTO::new).collect(Collectors.toList());
@@ -78,8 +92,8 @@ public class KeyRingController {
         }
     }
 
-    @GetMapping("/search")
-    public ResponseEntity<?> retrieveKeyRingList(@RequestParam(required = false) String userId) {
+    @GetMapping
+    public ResponseEntity<?> retrieveKeyRingList(String userId) {
         // userid가 생성한 KeyRing entity 목록 받아옴
         List<KeyRingEntity> entities = service.retrieve(userId);
         // KeyRing entity 목록을 KeyRing dto 목록으로 변경

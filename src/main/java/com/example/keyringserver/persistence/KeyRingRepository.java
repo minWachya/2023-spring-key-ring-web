@@ -19,4 +19,6 @@ public interface KeyRingRepository extends JpaRepository<KeyRingEntity, String> 
      * @Query("select * from t where t.userId =?1", nativeQuery = true)
      * List<KeyRingEntity> findByUserId(String userId);
      * */
+
+    List<KeyRingEntity> findByTitle(String title);
 }
