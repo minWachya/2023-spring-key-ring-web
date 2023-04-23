@@ -23,6 +23,6 @@ public class KeyRingEntity {
     private String id;
     private String userId;
     private String title;
-    private String detail;
-    private String imgUrl;
+    private String detail; // 제품 상제
+    private String imgUrl;  // 제품 이미지 링크
 }

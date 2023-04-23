@@ -17,20 +17,22 @@ public class KeyRingService {
     @Autowired
     private KeyRingRepository repository;
 
+    // 생성
     public List<KeyRingEntity> create(final KeyRingEntity entity) {
-        validate(entity);
+        validate(entity);           // 엔티티 유효성 검사
 
-        repository.save(entity);
+        repository.save(entity);    // DB에 저장
 
-        return repository.findByUserId(entity.getUserId()); // userId가 생성한 거 말고 전체 데이터 리턴은 findAll()
+        // 엔티티 반환
+        return repository.findAll(); //.findByUserId(entity.getUserId()); // userId가 생성한 거 말고 전체 데이터 리턴은 findAll()
     }
 
-    // 수정 후 모든 KeyRing List 반환
+    // 수정
     public List<KeyRingEntity> update(final KeyRingEntity entity) {
-        validate(entity);
+        validate(entity);   // 유효성 검사
 
         // entity가 Null이 아닌 경우 실행
-        // put 요청한 KeyRing id와 같은 KeyRing 찾기
+        // 수정 요청한 KeyRing id와 같은 KeyRing 찾기
         final Optional<KeyRingEntity> optional = repository.findById(entity.getId());
         optional.ifPresent(keyRing -> {
             // userId, title, detail, imgUrl 수정 후 저장
@@ -42,25 +44,29 @@ public class KeyRingService {
             repository.save(keyRing);
         });
 
-        return repository.findByUserId(entity.getUserId());
+        return repository.findAll(); //.findByUserId(entity.getUserId());
     }
 
+    // 검색
     public List<KeyRingEntity> search(final String title) {
+        // 타이틀이 같은 데이터 모두 반환
         return repository.findByTitle(title);
     }
 
-    // 삭제 후 모든 TodoE List 반환
+    // 삭제
     public List<KeyRingEntity> delete(final KeyRingEntity entity) {
-        validate(entity);
+        validate(entity);       // 유효성 검사
 
         try {
+            // DB에서 데이터 삭제
             repository.delete(entity);
         } catch (Exception e) {
             log.error("error deleting entity:" + entity.getUserId(), e);
 
             throw new RuntimeException("error deleting entity: " + entity.getUserId());
         }
-        return repository.findByUserId(entity.getUserId());
+        // 모든 키링 리스트 반환
+        return repository.findAll(); //findByUserId(entity.getUserId());
     }
 
     // userId가 생성한 모든 KeyRing List 리턴

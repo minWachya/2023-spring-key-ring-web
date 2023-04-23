@@ -22,6 +22,7 @@ public class KeyRingController {
     @Autowired
     private KeyRingService service;
 
+    // 생성
     @PostMapping
     public ResponseEntity<?> createKeyRing(@RequestBody KeyRingDTO dto) {
         try {
@@ -44,6 +45,7 @@ public class KeyRingController {
         }
     }
 
+    // 수정
     @PutMapping
     public ResponseEntity<?> updateKeyRing(@RequestBody KeyRingDTO dto) {
         // dto를 entity로 변경
@@ -59,6 +61,7 @@ public class KeyRingController {
         return ResponseEntity.ok().body(response);
     }
 
+    // 검색
     @GetMapping("/search")
     public ResponseEntity<?> searchKeyRing(@RequestBody(required = false) KeyRingSearchRequestBodyDTO request) {
         // title이 같은 KeyRing entity 목록 받아옴
@@ -72,6 +75,7 @@ public class KeyRingController {
         return ResponseEntity.ok().body(response);
     }
 
+    // 삭제
     @DeleteMapping
     public ResponseEntity<?> deleteKeyRing(@RequestBody KeyRingDTO dto) {
         try {
@@ -92,6 +96,8 @@ public class KeyRingController {
         }
     }
 
+    //------
+    // userId가 생성한 모든 KeyRing List 리턴
     @GetMapping
     public ResponseEntity<?> retrieveKeyRingList(String userId) {
         // userid가 생성한 KeyRing entity 목록 받아옴
