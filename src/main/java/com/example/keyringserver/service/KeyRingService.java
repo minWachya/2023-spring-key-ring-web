@@ -70,8 +70,8 @@ public class KeyRingService {
     }
 
     // userId가 생성한 모든 KeyRing List 리턴
-    public List<KeyRingEntity> retrieve(final String userId) {
-        return repository.findByUserId(userId);
+    public List<KeyRingEntity> retrieve() {
+        return repository.findAll();
     }
 
     // 엔티티 유효성 확인

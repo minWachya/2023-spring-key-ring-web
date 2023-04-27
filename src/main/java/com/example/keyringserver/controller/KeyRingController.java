@@ -97,11 +97,11 @@ public class KeyRingController {
     }
 
     //------
-    // userId가 생성한 모든 KeyRing List 리턴
+    // 모든 KeyRing List 리턴
     @GetMapping
-    public ResponseEntity<?> retrieveKeyRingList(String userId) {
+    public ResponseEntity<?> retrieveKeyRingList() {
         // userid가 생성한 KeyRing entity 목록 받아옴
-        List<KeyRingEntity> entities = service.retrieve(userId);
+        List<KeyRingEntity> entities = service.retrieve();
         // KeyRing entity 목록을 KeyRing dto 목록으로 변경
         List<KeyRingDTO> dtos = entities.stream().map(KeyRingDTO::new).collect(Collectors.toList());
         // response 만들어서 출력
