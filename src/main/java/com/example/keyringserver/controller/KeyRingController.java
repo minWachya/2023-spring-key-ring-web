@@ -62,7 +62,7 @@ public class KeyRingController {
     }
 
     // 검색
-    @GetMapping("/search")
+    @PostMapping("/search")
     public ResponseEntity<?> searchKeyRing(@RequestBody(required = false) KeyRingSearchRequestBodyDTO request) {
         // title이 같은 KeyRing entity 목록 받아옴
         List<KeyRingEntity> entities = service.search(request.getTitle());
