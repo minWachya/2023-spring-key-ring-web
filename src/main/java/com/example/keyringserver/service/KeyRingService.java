@@ -69,7 +69,7 @@ public class KeyRingService {
         return repository.findAll(); //findByUserId(entity.getUserId());
     }
 
-    // userId가 생성한 모든 KeyRing List 리턴
+    // 모든 KeyRing List 리턴
     public List<KeyRingEntity> retrieve() {
         return repository.findAll();
     }
