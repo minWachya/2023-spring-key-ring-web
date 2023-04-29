@@ -59,7 +59,7 @@ public class KeyRingService {
 
         try {
             // DB에서 데이터 삭제
-            repository.delete(entity);
+            repository.deleteById(entity.getId());
         } catch (Exception e) {
             log.error("error deleting entity:" + entity.getUserId(), e);
 
