@@ -13,7 +13,5 @@ public interface KeyRingRepository extends JpaRepository<KeyRingEntity, String> 
     // JpaRepository<테이블에 매핑될 엔터티 클래스, 기본 키 타입>
 
     // Jpa가 자동으로 쿼리 만들어줌
-    List<KeyRingEntity> findByUserId(String userId);
-
     List<KeyRingEntity> findByTitle(String title);
 }

@@ -25,7 +25,7 @@ public class KeyRingService {
         repository.save(entity);    // DB에 저장
 
         // 엔티티 반환
-        return repository.findAll(); //.findByUserId(entity.getUserId()); // userId가 생성한 거 말고 전체 데이터 리턴은 findAll()
+        return repository.findAll();
     }
 
     // 수정
@@ -49,7 +49,7 @@ public class KeyRingService {
             repository.save(keyRing);
         });
 
-        return keyRingEntityList; //.findByUserId(entity.getUserId());
+        return keyRingEntityList;
     }
 
     // 검색
@@ -71,7 +71,7 @@ public class KeyRingService {
             throw new RuntimeException("error deleting entity: " + entity.getUserId());
         }
         // 모든 키링 리스트 반환
-        return repository.findAll(); //findByUserId(entity.getUserId());
+        return repository.findAll();
     }
 
     // 모든 KeyRing List 리턴
