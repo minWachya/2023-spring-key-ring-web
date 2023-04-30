@@ -7,6 +7,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -33,6 +34,8 @@ public class KeyRingService {
 
         // entity가 Null이 아닌 경우 실행
         // 수정 요청한 KeyRing id와 같은 KeyRing 찾기
+        List<KeyRingEntity> keyRingEntityList = new ArrayList<>();
+
         final Optional<KeyRingEntity> optional = repository.findById(entity.getId());
         optional.ifPresent(keyRing -> {
             // userId, title, detail, imgUrl 수정 후 저장
@@ -41,10 +44,12 @@ public class KeyRingService {
             keyRing.setDetail(entity.getDetail());
             keyRing.setImgUrl(entity.getImgUrl());
 
+            keyRingEntityList.add(keyRing);
+
             repository.save(keyRing);
         });
 
-        return repository.findAll(); //.findByUserId(entity.getUserId());
+        return keyRingEntityList; //.findByUserId(entity.getUserId());
     }
 
     // 검색
