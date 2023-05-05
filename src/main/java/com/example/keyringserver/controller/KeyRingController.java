@@ -18,7 +18,7 @@ import java.util.stream.Collectors;
 @RestController
 @RequestMapping("keyring")
 public class KeyRingController {
-    // 자동 주입
+    // 서비스 자동 주입
     @Autowired
     private KeyRingService service;
 
@@ -28,7 +28,6 @@ public class KeyRingController {
         try {
             // dto로 entity 생성
             KeyRingEntity entity = KeyRingDTO.toEntity(dto);
-
             // entity 저장 후 모든 KeyRing entity 목록 받아옴
             List<KeyRingEntity> entities = service.create(entity);
             // KeyRing entity 목록을 KeyRing dto 목록으로 변경
@@ -36,7 +35,6 @@ public class KeyRingController {
             // response 만들어서 출력
             ResponseDTO<KeyRingDTO> response = ResponseDTO.<KeyRingDTO>builder()
                     .data(dtos).build();
-
             return ResponseEntity.ok().body(response);
         } catch (Exception e) {
             String error = e.getMessage();
@@ -57,7 +55,6 @@ public class KeyRingController {
         // response 만들어서 출력
         ResponseDTO<KeyRingDTO> response = ResponseDTO.<KeyRingDTO>builder()
                 .data(dtos).build();
-
         return ResponseEntity.ok().body(response);
     }
 
@@ -71,7 +68,6 @@ public class KeyRingController {
         // response 만들어서 출력
         ResponseDTO<KeyRingDTO> response = ResponseDTO.<KeyRingDTO>builder()
                 .data(dtos).build();
-
         return ResponseEntity.ok().body(response);
     }
 
@@ -96,7 +92,6 @@ public class KeyRingController {
         }
     }
 
-    //------
     // 모든 KeyRing List 리턴
     @GetMapping
     public ResponseEntity<?> retrieveKeyRingList() {
@@ -107,7 +102,6 @@ public class KeyRingController {
         // response 만들어서 출력
         ResponseDTO<KeyRingDTO> response = ResponseDTO.<KeyRingDTO>builder()
                 .data(dtos).build();
-
         return ResponseEntity.ok().body(response);
     }
 }

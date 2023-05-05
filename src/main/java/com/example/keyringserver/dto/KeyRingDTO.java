@@ -6,6 +6,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+// 키링 DTO
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
@@ -24,8 +25,6 @@ public class KeyRingDTO {
         this.detail = entity.getDetail();
         this.imgUrl = entity.getImgUrl();
     }
-
-    // Controller가 받은 KeyRingDTO KeyRingEntity 변환 필요
     public static KeyRingEntity toEntity(final KeyRingDTO dto) {
         return KeyRingEntity.builder()
                 .id(dto.getId())

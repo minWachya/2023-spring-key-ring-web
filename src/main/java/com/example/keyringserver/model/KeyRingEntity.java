@@ -10,16 +10,17 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.GenericGenerator;
 
+// 키링 Entity
 @Builder
-@NoArgsConstructor  // 롬복: 인자없는 생성자 생성
+@NoArgsConstructor
 @AllArgsConstructor
-@Data               // 롬복: getter/setter 추가
-@Entity             // 엔티티 클래스 지정
-@Table(name = "KeyRing")   //  테이블 이름 지정(미지정 시 기본 이름은 KeyRingEntity, KeyRing 테이블과 매핑)
+@Data
+@Entity
+@Table(name = "KeyRing")
 public class KeyRingEntity {
     @Id            // 기본 키 지정
-    @GeneratedValue(generator = "system-uuid")   // system-uuid라는 이름의 generator 이용하여 uuid 자동 생성
-    @GenericGenerator(name="system-uuid", strategy = "uuid")    // system-uuid라는 이름의 generator를 생성함. 얘는 uuid라는 문자열 이용해 id 생성함.
+    @GeneratedValue(generator = "system-uuid")
+    @GenericGenerator(name="system-uuid", strategy = "uuid")
     private String id;
     private String userId;
     private String title;

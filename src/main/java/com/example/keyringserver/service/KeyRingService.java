@@ -11,27 +11,22 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-@Slf4j  // 로깅 레벨 관리해주는 라이브러리(Simple Logging Facade for Java)
+@Slf4j
 @Service
 public class KeyRingService {
-    // KeyRingRepository 인터페이스 구현한 클래스를 JPA가 자동 생성, 자동 주입
     @Autowired
     private KeyRingRepository repository;
 
     // 생성
     public List<KeyRingEntity> create(final KeyRingEntity entity) {
         validate(entity);           // 엔티티 유효성 검사
-
         repository.save(entity);    // DB에 저장
-
-        // 엔티티 반환
         return repository.findAll();
     }
 
     // 수정
     public List<KeyRingEntity> update(final KeyRingEntity entity) {
         validate(entity);   // 유효성 검사
-
         // entity가 Null이 아닌 경우 실행
         // 수정 요청한 KeyRing id와 같은 KeyRing 찾기
         List<KeyRingEntity> keyRingEntityList = new ArrayList<>();
