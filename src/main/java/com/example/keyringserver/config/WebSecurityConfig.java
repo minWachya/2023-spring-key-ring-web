@@ -2,12 +2,12 @@ package com.example.keyringserver.config;
 
 import com.example.keyringserver.security.JwtAuthenticationFilter;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.catalina.filters.CorsFilter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
+import org.springframework.web.filter.CorsFilter;
 
 // 필터 설정
 @EnableWebSecurity // 스프링 시큐리티 활성. CSRF 공격을 보로하는 기능 활성화
