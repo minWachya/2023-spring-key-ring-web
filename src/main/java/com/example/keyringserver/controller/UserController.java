@@ -2,6 +2,7 @@ package com.example.keyringserver.controller;
 import com.example.keyringserver.dto.ResponseDTO;
 import com.example.keyringserver.dto.UserDTO;
 import com.example.keyringserver.model.UserEntity;
+import com.example.keyringserver.security.TokenProvider;
 import com.example.keyringserver.service.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +19,9 @@ public class UserController {
 
     @Autowired
     private UserService userService;
+
+    @Autowired
+    private TokenProvider tokenProvider;
 
     // 회원가입
     @PostMapping("/signup")
@@ -56,8 +60,11 @@ public class UserController {
 
         // 사용자 정보가 있으면
         if(user != null) {
+            // 토큰 생성
+            final String token = tokenProvider.create(user);
             // userDTO 만들어서 반환
             final UserDTO responseUserDTO = UserDTO.builder()
+                    .token(token)
                     .email(user.getEmail())
                     .id(user.getId())
                     .username(user.getUsername())
